@@ -9,99 +9,77 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "tb_produto")
 public class Produto {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+  
+    @Column(unique = true)
+    private String codigo;
+    private String nome;
+    private int quantidade;
+    private String endereco;
 
-	@Column(nullable = false, unique = true)
-	private String codigo;
+    @OneToMany(mappedBy = "produto")
+    private List<MovimentacaoEstoque> movimentacoes = new ArrayList<>();
 
-	@Column(nullable = false)
-	private String nome;
+    // Construtores
+    public Produto() {
+    }
 
-	@Column
-	private String descricao;
+    public Produto(Long id, String codigo, String nome, int quantidade, String endereco) {
+        this.id = id;
+        this.codigo = codigo;
+        this.nome = nome;
+        this.quantidade = quantidade;
+        this.endereco = endereco;
+    }
 
-	@Column(nullable = false)
-	private Integer quantidade;
+    // Getters e Setters
+    public Long getId() {
+        return id;
+    }
 
-	@Column(nullable = false)
-	private Double preco;
+    public String getCodigo() {
+        return codigo;
+    }
 
-	@OneToMany(mappedBy = "produto")
-	private List<MovimentacaoEstoque> movimentacoes = new ArrayList<>();
+    public String getNome() {
+        return nome;
+    }
 
-	// Construtor padrão
-	public Produto() {
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
+    }
+
+	public String getEndereco() {
+		return endereco;
 	}
 
-	// Construtor sem id
-	public Produto(String codigo, String nome, String descricao, Integer quantidade, Double preco) {
-		this.codigo = codigo;
-		this.nome = nome;
-		this.descricao = descricao;
-		this.quantidade = quantidade;
-		this.preco = preco;
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
 	}
+    
 
-	// Getters e Setters
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getCodigo() {
-		return codigo;
-	}
-
-	public void setCodigo(String codigo) {
-		this.codigo = codigo;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getDescricao() {
-		return descricao;
-	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-
-	public Integer getQuantidade() {
-		return quantidade;
-	}
-
-	public void setQuantidade(Integer quantidade) {
-		this.quantidade = quantidade;
-	}
-
-	public Double getPreco() {
-		return preco;
-	}
-
-	public void setPreco(Double preco) {
-		this.preco = preco;
-	}
-
-	public List<MovimentacaoEstoque> getMovimentacoes() {
-		return movimentacoes;
-	}
-
-	public void setMovimentacoes(List<MovimentacaoEstoque> movimentacoes) {
-		this.movimentacoes = movimentacoes;
-	}
 }

@@ -1,4 +1,4 @@
-package com.guilherme.estoque.controller;
+package com.guilherme.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TesteController {
 
-    @GetMapping("/teste")
-    public String teste() {
-        return "Sistema de estoque está funcionando";
-    }
+	@GetMapping("/teste")
+	public String teste() {
+		return "Sistema de estoque está funcionando";
+	}
 }

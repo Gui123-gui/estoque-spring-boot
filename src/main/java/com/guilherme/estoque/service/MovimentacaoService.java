@@ -59,11 +59,8 @@ public class MovimentacaoService {
 	public List<MovimentacaoEstoque> historicoMovimentacao(String codigo) {
 		Produto produto = produtoRepository.findByCodigo(codigo)
 				.orElseThrow(() -> new IllegalArgumentException("Produto não encontrado."));
-		
-		MovimentacaoEstoque mov = movimentacaoReporitory.findById(produto.getId()
-				.orElseThrow(() -> new IllegalArgumentException("Produto não encontrado"));
-							
-		List<MovimentacaoEstoque> historico = new ArrayList<>();
+		List<MovimentacaoEstoque> mov = movimentacaoReporitory.findByProdutoId(produto.getId());
+		return mov;
 	}
 
 }

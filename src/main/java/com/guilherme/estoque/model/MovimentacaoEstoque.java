@@ -2,6 +2,8 @@ package com.guilherme.estoque.model;
 
 import java.time.LocalDateTime;
 
+import com.guilherme.estoque.enums.TipoMovimentacao;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;

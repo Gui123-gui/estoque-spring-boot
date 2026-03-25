@@ -1,10 +1,10 @@
-package com.guilherme.controller;
+package com.guilherme.estoque.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class TesteController {
+public class ProdutoController {
 
 	@GetMapping("/teste")
 	public String teste() {

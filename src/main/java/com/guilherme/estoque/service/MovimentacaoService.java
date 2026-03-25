@@ -1,15 +1,13 @@
 package com.guilherme.estoque.service;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.guilherme.estoque.enums.TipoMovimentacao;
 import com.guilherme.estoque.model.MovimentacaoEstoque;
 import com.guilherme.estoque.model.Produto;
-import com.guilherme.estoque.model.TipoMovimentacao;
 import com.guilherme.estoque.repository.MovimentacaoRepository;
 import com.guilherme.estoque.repository.ProdutoRepository;
 

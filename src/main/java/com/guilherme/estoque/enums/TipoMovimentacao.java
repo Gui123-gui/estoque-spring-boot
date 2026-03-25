@@ -1,4 +1,4 @@
-package com.guilherme.estoque.model;
+package com.guilherme.estoque.enums;
 
 public enum TipoMovimentacao {
     ENTRADA,

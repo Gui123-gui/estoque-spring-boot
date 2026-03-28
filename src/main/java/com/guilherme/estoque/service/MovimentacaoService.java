@@ -14,11 +14,11 @@ import com.guilherme.estoque.repository.ProdutoRepository;
 @Service
 public class MovimentacaoService {
 
-	private final MovimentacaoRepository movimentacaoReporitory;
+	private final MovimentacaoRepository movimentacaoRepository;
 	private ProdutoRepository produtoRepository;
 
 	public MovimentacaoService(MovimentacaoRepository movimentacaoReporitory, ProdutoRepository produtoRepository) {
-		this.movimentacaoReporitory = movimentacaoReporitory;
+		this.movimentacaoRepository = movimentacaoReporitory;
 		this.produtoRepository = produtoRepository;
 	}
 
@@ -35,7 +35,7 @@ public class MovimentacaoService {
 		}
 		MovimentacaoEstoque movimentacao = new MovimentacaoEstoque(TipoMovimentacao.SAIDA, quantidade,
 				LocalDateTime.now(), produto);
-		return movimentacaoReporitory.save(movimentacao);
+		return movimentacaoRepository.save(movimentacao);
 
 	}
 
@@ -50,14 +50,14 @@ public class MovimentacaoService {
 
 		MovimentacaoEstoque movimentacao = new MovimentacaoEstoque(TipoMovimentacao.ENTRADA, quantidade,
 				LocalDateTime.now(), produto);
-		return movimentacaoReporitory.save(movimentacao);
+		return movimentacaoRepository.save(movimentacao);
 
 	}
 	
 	public List<MovimentacaoEstoque> historicoMovimentacao(String codigo) {
 		Produto produto = produtoRepository.findByCodigo(codigo)
 				.orElseThrow(() -> new IllegalArgumentException("Produto não encontrado."));
-		List<MovimentacaoEstoque> mov = movimentacaoReporitory.findByProdutoId(produto.getId());
+		List<MovimentacaoEstoque> mov = movimentacaoRepository.findByProdutoId(produto.getId());
 		return mov;
 	}
 

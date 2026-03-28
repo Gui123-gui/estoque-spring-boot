@@ -33,11 +33,11 @@ public class ProdutoService {
 		return produto;
 	}
 
-	public void atualizarEndereco(String codigo, String enderecoNovo) {
+	public Produto atualizarEndereco(String codigo, String enderecoNovo) {
 		Produto produto = produtoRepository.findByCodigo(codigo)
 				.orElseThrow(() -> new IllegalArgumentException("Produto não encontrado."));
 		produto.setEndereco(enderecoNovo);
-		produtoRepository.save(produto);
+		return produtoRepository.save(produto);
 	}
 
 }

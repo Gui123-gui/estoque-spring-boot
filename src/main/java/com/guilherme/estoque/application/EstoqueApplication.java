@@ -1,4 +1,4 @@
-package com.guilherme.estoque;
+package com.guilherme.estoque.application;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

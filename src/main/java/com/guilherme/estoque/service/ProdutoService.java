@@ -22,22 +22,20 @@ public class ProdutoService {
 	}
 
 	public void removerProduto(String codigo) {
-		Produto codigoProduto = produtoRepository.findByCodigo(codigo)
-				.orElseThrow(() -> new IllegalArgumentException("Produto não encontrado."));
+		Produto codigoProduto = buscarProduto(codigo);
 		produtoRepository.delete(codigoProduto);
 	}
 
 	public Produto buscarProduto(String codigo) {
-		Produto produto = produtoRepository.findByCodigo(codigo)
+		return produtoRepository.findByCodigo(codigo)
 				.orElseThrow(() -> new IllegalArgumentException("Produto não encontrado."));
-		return produto;
 	}
 
 	public Produto atualizarEndereco(String codigo, String enderecoNovo) {
-		Produto produto = produtoRepository.findByCodigo(codigo)
-				.orElseThrow(() -> new IllegalArgumentException("Produto não encontrado."));
+		Produto produto = buscarProduto(codigo);
 		produto.setEndereco(enderecoNovo);
 		return produtoRepository.save(produto);
 	}
 
 }
+

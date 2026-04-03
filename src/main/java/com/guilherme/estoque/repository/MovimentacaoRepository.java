@@ -11,3 +11,6 @@ public interface MovimentacaoRepository extends JpaRepository<MovimentacaoEstoqu
 	List<MovimentacaoEstoque> findByProdutoId(Long produtoId);
 
 }
+
+
+

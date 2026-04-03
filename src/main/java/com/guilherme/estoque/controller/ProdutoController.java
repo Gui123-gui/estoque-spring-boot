@@ -45,3 +45,5 @@ public class ProdutoController {
 		return ResponseEntity.ok(produtoService.atualizarEndereco(codigo, enderecoNovo));
 	}
 }
+
+

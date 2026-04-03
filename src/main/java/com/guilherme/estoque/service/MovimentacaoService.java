@@ -17,14 +17,19 @@ public class MovimentacaoService {
 	private final MovimentacaoRepository movimentacaoRepository;
 	private ProdutoRepository produtoRepository;
 
+	public Produto findByCodigo(String codigo){
+		return produtoRepository.findByCodigo(codigo)
+				.orElseThrow(() -> new IllegalArgumentException("Produto não encontrado."));
+
+	}
+
 	public MovimentacaoService(MovimentacaoRepository movimentacaoReporitory, ProdutoRepository produtoRepository) {
 		this.movimentacaoRepository = movimentacaoReporitory;
 		this.produtoRepository = produtoRepository;
 	}
 
 	public MovimentacaoEstoque saidaMovimentacao(String codigo, Integer quantidade) {
-		Produto produto = produtoRepository.findByCodigo(codigo)
-				.orElseThrow(() -> new IllegalArgumentException("Produto não encontrado."));
+		Produto produto = findByCodigo(codigo);
 		if (produto.getQuantidade() < quantidade) {
 			throw new IllegalArgumentException("Quantidade insuficiente");
 		} else {
@@ -40,8 +45,7 @@ public class MovimentacaoService {
 	}
 
 	public MovimentacaoEstoque entradaMovimentacao(String codigo, Integer quantidade) {
-		Produto produto = produtoRepository.findByCodigo(codigo)
-				.orElseThrow(() -> new IllegalArgumentException("Produto não encontrado."));
+		Produto produto = findByCodigo(codigo);
 
 		Integer quantidadeProduto = produto.getQuantidade();
 		quantidadeProduto += quantidade;
@@ -55,10 +59,12 @@ public class MovimentacaoService {
 	}
 	
 	public List<MovimentacaoEstoque> historicoMovimentacao(String codigo) {
-		Produto produto = produtoRepository.findByCodigo(codigo)
-				.orElseThrow(() -> new IllegalArgumentException("Produto não encontrado."));
+		Produto produto = findByCodigo(codigo);
 		List<MovimentacaoEstoque> mov = movimentacaoRepository.findByProdutoId(produto.getId());
 		return mov;
 	}
 
 }
+
+
+
